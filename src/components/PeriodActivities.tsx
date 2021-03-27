@@ -66,7 +66,7 @@ const PeriodActivities: React.FC<PeriodActivitiesProps> = ({ activities }) => {
 			}
 			setCurrentActivities([...tmp]);
 		}
-	}, [startDate, endDate]);
+	}, [startDate, endDate, activities]);
 
 	useEffect(() => {
 		setLabels(currentActivities.map((activity) => activity.name));

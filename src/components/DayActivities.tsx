@@ -18,7 +18,7 @@ const DayActivities: React.FC<DayActivitiesProps> = ({ activities }) => {
 
 	const filterActivities = () => {
 		if (currentDate) {
-			activities = activities.filter(
+			let tmp = activities.filter(
 				(activity) =>
 					activity.startDate.getFullYear() ===
 						currentDate.getFullYear() &&
@@ -26,15 +26,11 @@ const DayActivities: React.FC<DayActivitiesProps> = ({ activities }) => {
 					activity.startDate.getDate() === currentDate.getDate()
 			);
 
-			setCurrentActivities([...activities]);
+			setCurrentActivities([...tmp]);
 		}
 	};
 
-	useEffect(() => {
-		if (currentDate) {
-			filterActivities();
-		}
-	}, [currentDate, activities]);
+	useEffect(filterActivities, [currentDate, activities]);
 
 	useEffect(() => {
 		setLabels(currentActivities.map((activity) => activity.name));
