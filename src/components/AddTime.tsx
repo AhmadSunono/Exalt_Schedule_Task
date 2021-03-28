@@ -39,7 +39,7 @@ const AddTime: React.FC<AddTimeProps> = ({ addActivity }) => {
 		setFormData({ name: '', startDate: '', endDate: '' });
 	};
 
-	/* 	const startDateRef = useRef();
+/* 	const startDateRef = useRef<HTMLInputElement>(null);
 	const endDateRef = useRef();
 	const activityRef = useRef(); */
 

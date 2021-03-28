@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Activity } from './../App';
 
@@ -8,9 +8,6 @@ interface DayActivitiesProps {
 
 const DayActivities: React.FC<DayActivitiesProps> = ({ activities }) => {
 	const [currentDate, setCurrentDate] = useState<Date | null>(null);
-	const [currentActivities, setCurrentActivities] = useState<Activity[]>([]);
-	const [labels, setLabels] = useState<String[]>([]);
-	const [data, setData] = useState<Number[]>([]);
 
 	const dateChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setCurrentDate(new Date(e.target.value + ''));
@@ -18,33 +15,19 @@ const DayActivities: React.FC<DayActivitiesProps> = ({ activities }) => {
 
 	const filterActivities = () => {
 		if (currentDate) {
-			let tmp = activities.filter(
+			let currentActivities = activities.filter(
 				(activity) =>
 					activity.startDate.getFullYear() ===
 						currentDate.getFullYear() &&
 					activity.startDate.getMonth() === currentDate.getMonth() &&
 					activity.startDate.getDate() === currentDate.getDate()
 			);
-
-			setCurrentActivities([...tmp]);
+			return currentActivities;
 		}
+		return activities;
 	};
 
-	useEffect(filterActivities, [currentDate, activities]);
-
-	useEffect(() => {
-		setLabels(currentActivities.map((activity) => activity.name));
-		setData(
-			currentActivities.map((activity) =>
-				Math.floor(
-					Math.abs(
-						activity.endDate.getTime() -
-							activity.startDate.getTime()
-					) / 36e5
-				)
-			)
-		);
-	}, [currentActivities]);
+	let currentActivities = filterActivities();
 
 	return (
 		<React.Fragment>
@@ -61,11 +44,18 @@ const DayActivities: React.FC<DayActivitiesProps> = ({ activities }) => {
 					style={{ width: '400px', height: '200px', margin: 'auto' }}>
 					<Pie
 						data={{
-							labels: labels,
+							labels: currentActivities.map((activity) => activity.name),
 							datasets: [
 								{
 									label: 'Activities',
-									data: data,
+									data: currentActivities.map((activity) =>
+										Math.floor(
+											Math.abs(
+												activity.endDate.getTime() -
+													activity.startDate.getTime()
+											) / 36e5
+										)
+									),
 									backgroundColor: 'rgba(116,185,255,0.2)',
 									borderColor: 'rgba(116,185,255,1)',
 									borderWidth: 1,

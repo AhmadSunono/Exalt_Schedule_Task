@@ -1,4 +1,4 @@
-import { useState /* useEffect */ } from 'react';
+import { useState } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 export interface Activity {
 	name: string;
-	startDate: Date;
+	startDate: Date ;
 	endDate: Date;
 }
 
@@ -17,10 +17,6 @@ const App = () => {
 	const addActivity = (activity: Activity) => {
 		setActivities([...activities, activity]);
 	};
-
-	// useEffect(() => {
-	// 	console.log(activities);
-	// }, [activities]);
 
 	return (
 		<div className='App'>
