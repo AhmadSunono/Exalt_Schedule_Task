@@ -45,7 +45,8 @@ const AddTime: React.FC = () => {
 	return (
 		<form className='add-time' onSubmit={submitHandler}>
 			<div>
-				<h6>Start Time:</h6>
+				<label htmlFor='startDate'>Start Time:</label>
+				<br />
 				<input
 					type='datetime-local'
 					name='startDate'
@@ -55,8 +56,10 @@ const AddTime: React.FC = () => {
 					required
 				/>
 			</div>
+			<br />
 			<div>
-				<h6>End Time:</h6>
+				<label htmlFor='endDate'>End Time:</label>
+				<br />
 				<input
 					type='datetime-local'
 					value={formData.endDate}
