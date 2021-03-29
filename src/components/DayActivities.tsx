@@ -39,12 +39,14 @@ const DayActivities: React.FC<DayActivitiesProps> = ({ activities }) => {
 				<input type='date' onChange={dateChangeHandler} />
 			</div>
 
-			{currentActivities.length ? (
+			{currentDate && currentActivities.length ? (
 				<div
 					style={{ width: '400px', height: '200px', margin: 'auto' }}>
 					<Pie
 						data={{
-							labels: currentActivities.map((activity) => activity.name),
+							labels: currentActivities.map(
+								(activity) => activity.name
+							),
 							datasets: [
 								{
 									label: 'Activities',
