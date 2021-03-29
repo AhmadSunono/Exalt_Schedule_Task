@@ -1,11 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { Activity } from './../App';
+import { Activity } from './Main';
+import axios from '../axios-activities';
 
-interface AddTimeProps {
-	addActivity: (activity: Activity) => void;
-}
-
-const AddTime: React.FC<AddTimeProps> = ({ addActivity }) => {
+const AddTime: React.FC = () => {
 	const [formData, setFormData] = useState({
 		startDate: '',
 		endDate: '',
@@ -35,13 +32,15 @@ const AddTime: React.FC<AddTimeProps> = ({ addActivity }) => {
 			endDate,
 			name
 		};
-		addActivity(activity);
+		postActivity(activity);
 		setFormData({ name: '', startDate: '', endDate: '' });
 	};
 
-/* 	const startDateRef = useRef<HTMLInputElement>(null);
-	const endDateRef = useRef();
-	const activityRef = useRef(); */
+	const postActivity = (activity: Activity): void => {
+		axios
+			.post('/activities.json', activity)
+			.catch((err) => console.log(err));
+	};
 
 	return (
 		<form className='add-time' onSubmit={submitHandler}>

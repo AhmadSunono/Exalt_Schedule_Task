@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Pie } from 'react-chartjs-2';
-import { Activity } from './../App';
+import { Activity } from './Main';
 
 interface DayActivitiesProps {
 	activities: Activity[];

@@ -1,21 +1,15 @@
 import { Route } from 'react-router-dom';
 import AddTime from './AddTime';
-import { Activity } from './../App';
 import Main from './Main';
 
-interface ContentProps {
-	addActivity: (activity: Activity) => void;
-	activities: Activity[];
-}
-
-const Content: React.FC<ContentProps> = ({ addActivity, activities }) => {
+const Content: React.FC = () => {
 	return (
 		<div className='content'>
 			<Route exact path='/'>
-				<Main activities={activities} />
+				<Main />
 			</Route>
 			<Route path='/add'>
-				<AddTime addActivity={addActivity} />
+				<AddTime />
 			</Route>
 			<Route path='/two'>TWO</Route>
 		</div>

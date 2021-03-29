@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
-import { Activity } from './../App';
+import { Activity } from './Main';
 
 interface PeriodActivitiesProps {
 	activities: Activity[];
