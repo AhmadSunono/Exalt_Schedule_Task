@@ -36,7 +36,12 @@ const DayActivities: React.FC<DayActivitiesProps> = ({ activities }) => {
 				<h5 style={{ display: 'inline', marginRight: '15px' }}>
 					Select Date:
 				</h5>
-				<input type='date' onChange={dateChangeHandler} />
+				<input
+					type='date'
+					className='daily-activities-date'
+					onChange={dateChangeHandler}
+					autoFocus
+				/>
 			</div>
 
 			{currentDate && currentActivities.length ? (

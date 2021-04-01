@@ -28,11 +28,34 @@ const Main: React.FC = () => {
 			.catch((err) => console.log(err));
 	}, []);
 
+	const ActivityList = () => {
+		return (
+			<ul className='activities'>
+				{activities.map((activity) => (
+					<li
+						key={
+							String(activity.startDate) +
+							String(activity.endDate) +
+							activity.name
+						}>
+						{activity.name} ### Starts at: ### -{' '}
+						{activity.startDate.getFullYear()}-
+						{activity.startDate.getMonth()}-
+						{activity.startDate.getDate()}
+					</li>
+				))}
+			</ul>
+		);
+	};
+
 	return (
 		<div className='main-page' style={{ paddingTop: '15px' }}>
 			<DayActivities activities={activities} />
 			<hr />
 			<PeriodActivities activities={activities} />
+			<hr />
+			<br />
+			{activities.length !== 0 && <ActivityList />}
 		</div>
 	);
 };

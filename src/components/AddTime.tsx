@@ -39,6 +39,7 @@ const AddTime: React.FC = () => {
 	const postActivity = (activity: Activity): void => {
 		axios
 			.post('/activities.json', activity)
+			.then((res) => console.log(res))
 			.catch((err) => console.log(err));
 	};
 
@@ -48,6 +49,7 @@ const AddTime: React.FC = () => {
 				<label htmlFor='startDate'>Start Time:</label>
 				<br />
 				<input
+					id='startDate'
 					type='datetime-local'
 					name='startDate'
 					value={formData.startDate}
@@ -61,6 +63,7 @@ const AddTime: React.FC = () => {
 				<label htmlFor='endDate'>End Time:</label>
 				<br />
 				<input
+					id='endDate'
 					type='datetime-local'
 					value={formData.endDate}
 					name='endDate'
@@ -70,8 +73,10 @@ const AddTime: React.FC = () => {
 				/>
 			</div>
 			<div>
-				<h6>Activity:</h6>
+				<label htmlFor='name'>Activity:</label>
+				<br />
 				<select
+					id='name'
 					name='name'
 					onChange={activityChangeHandler}
 					required
